@@ -1,0 +1,59 @@
+﻿<Window x:Class="GameStore.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameStore" d:DataContext="{d:DesignInstance Type=local:MainViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="10">
+            <TextBlock Text="Sellers" FontWeight="Bold" Margin="0,0,0,10"/>
+            <ComboBox x:Name="sellerComboBox" 
+                      ItemsSource="{Binding Sellers}" 
+                      DisplayMemberPath="FullName"
+                      SelectedItem="{Binding SelectedSeller}"
+                      Width="200"
+                      Margin="0,0,0,10"/>
+
+            <Button Content="Add Seller" Command="{Binding AddSellerCommand}" Width="100" Margin="0,0,0,5"/>
+            <Button Content="Delete Seller" Command="{Binding DeleteSellerCommand}" Width="100"/>
+            <TextBlock Text="Firstname:"/>
+            <TextBox Text="{Binding NewSellerFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5"/> 
+            <TextBlock Text="Lastname:"/>
+            <TextBox Text="{Binding NewSellerLastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5"/>
+            <TextBlock Text="Salary:"/>
+            <TextBox Text="{Binding NewSellerSalary,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="10">
+            <TextBlock Text="Games" FontWeight="Bold" Margin="0,0,0,10"/>
+            <ComboBox x:Name="gameComboBox" 
+                      ItemsSource="{Binding Games}" 
+                      DisplayMemberPath="GameTitle"
+                      SelectedItem="{Binding SelectedGame}"
+                      Width="200"
+                      Margin="0,0,0,10"/>
+
+            <Button Content="Add Game" Command="{Binding AddGameCommand}" Width="100" Margin="0,0,0,5"/>
+            <Button Content="Delete Game" Command="{Binding DeleteGameCommand }" Width="100"/>
+            <TextBlock Text="Gametitle:"/>
+            <TextBox Text="{Binding SelectedGame.GameTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5"/>
+            <TextBlock Text="Release Year:"/>
+            <TextBox Text="{Binding SelectedGame.ReleaseYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5"/>
+            <TextBlock Text="Price:"/>
+            <TextBox Text="{Binding SelectedGame.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5"/>
+
+            <TextBlock Text="Console:"/>
+            <ComboBox ItemsSource="{Binding Consoles,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="ConsoleName" SelectedItem="{Binding SelectedConsole}" Margin="0,0,0,5"/>
+        </StackPanel>
+    </Grid>
+</Window>
+
+
